@@ -569,3 +569,6 @@ a.contact-card:hover { border-color: var(--forest); box-shadow: var(--shadow); c
   .with-toc { display: block; }
   .tabs__panel[hidden] { display: block; }
 }
+
+/* Ícono de enlace externo: del tamaño del texto */
+.i-ext { width: .85em; height: .85em; vertical-align: -.08em; margin-left: .2em; flex: none; display: inline-block; }

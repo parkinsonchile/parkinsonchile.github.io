@@ -6,12 +6,12 @@ export const pad = (n) => String(n).padStart(2, "0");
 export const slug = (s) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
 // ---------- Íconos (trazos simples, 24×24) ----------
-const svg = (d, extra = "") => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ${extra}>${d}</svg>`;
+const svg = (d, extra = "") => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true" ${extra}>${d}</svg>`;
 export const icon = {
   arrow: svg('<path d="M5 12h14M13 6l6 6-6 6"/>'),
   arrowLeft: svg('<path d="M19 12H5M11 6l-6 6 6 6"/>'),
   arrowUp: svg('<path d="M12 19V5M6 11l6-6 6 6"/>'),
-  ext: svg('<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>'),
+  ext: svg('<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>', 'class="i-ext"'),
   download: svg('<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>'),
   file: svg('<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/>'),
   mail: svg('<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>'),
@@ -216,4 +216,4 @@ export function pager(currentId) {
 </div>`;
 }
 
-export const extLink = (label, url) => `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(label)} ${icon.ext}</a>`;
+export const extLink = (label, url) => `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(label)}${icon.ext}</a>`;

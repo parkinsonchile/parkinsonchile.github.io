@@ -15,7 +15,8 @@ export const contacto = {
 };
 
 // ---------- Secciones (las seis del documento maestro) ----------
-export const secciones = [
+// Para ocultar una sección sin perder su contenido: oculta: true (no se publica ni aparece en menús).
+const todasLasSecciones = [
   { id: "quienes-somos", file: "quienes-somos.html", nav: "Quiénes somos", label: "Quiénes somos", kicker: "Conocernos", img: "tema-vida.jpg",
     copy: "Nuestra historia, misión, visión y las personas detrás de Parkinson Chile." },
   { id: "que-es-el-parkinson", file: "que-es-el-parkinson.html", nav: "Qué es", label: "Qué es el Parkinson", kicker: "Comprender", img: "pareja-parque.jpg",
@@ -26,12 +27,12 @@ export const secciones = [
     copy: "Tratamiento, medicamentos, ejercicio, alimentación, vida diaria y tratamientos avanzados." },
   { id: "parkinson-en-chile", file: "parkinson-en-chile.html", nav: "En Chile", label: "Parkinson en Chile", kicker: "Orientarse", img: "tema-chile.jpg",
     copy: "GES Nº 62, ruta de atención, derechos y trámites, centros y grupos de pacientes." },
-  { id: "parkinson-en-el-mundo", file: "parkinson-en-el-mundo.html", nav: "En el mundo", label: "Parkinson en el mundo", kicker: "Explorar", img: null,
+  { id: "parkinson-en-el-mundo", oculta: true, file: "parkinson-en-el-mundo.html", nav: "En el mundo", label: "Parkinson en el mundo", kicker: "Explorar", img: null,
     copy: "Organizaciones, centros internacionales de referencia y figuras públicas." },
 ];
 
 // ---------- Descargas (PDF) ----------
-export const descargas = [
+const todasLasDescargas = [
   { id: "hoja-de-ruta", title: "Mi hoja de ruta", desc: "Los primeros pasos después del diagnóstico, etapa por etapa, con casillas para marcar.", seccion: "diagnostico", destacado: true },
   { id: "preparar-la-consulta", title: "Preparar la consulta", desc: "Lista para llevar, 10 preguntas para el especialista y un registro de síntomas para completar.", seccion: "diagnostico", destacado: true },
   { id: "ges-62", title: "GES Nº 62: cómo usarlo", desc: "Garantías, cómo activarlo con Fonasa o Isapre, costos, plazos, reclamos y ruta de atención.", seccion: "parkinson-en-chile", destacado: true },
@@ -42,8 +43,12 @@ export const descargas = [
   { id: "vida-diaria", title: "Vida diaria y autonomía", desc: "Estrategias, seis áreas a observar y cómo organizar el día.", seccion: "vivir-con-parkinson" },
   { id: "tratamientos-avanzados", title: "Tratamientos avanzados: DBS, HIFU y RF", desc: "Cómo funcionan, cuándo se evalúan, fortalezas, límites y fuentes.", seccion: "vivir-con-parkinson" },
   { id: "directorio-chile", title: "Directorio en Chile", desc: "Centros con experiencia en DBS, grupos de pacientes por región y fuentes oficiales.", seccion: "parkinson-en-chile" },
-  { id: "recursos-internacionales", title: "Recursos internacionales", desc: "Organizaciones, centros de referencia y cuentas de Instagram recomendadas.", seccion: "parkinson-en-el-mundo" },
+  { id: "recursos-internacionales", oculta: true, title: "Recursos internacionales", desc: "Organizaciones, centros de referencia y cuentas de Instagram recomendadas.", seccion: "parkinson-en-el-mundo" },
 ];
+
+export const ocultas = new Set([...todasLasSecciones, ...todasLasDescargas].filter((x) => x.oculta).map((x) => x.id));
+export const secciones = todasLasSecciones.filter((s) => !s.oculta);
+export const descargas = todasLasDescargas.filter((d) => !d.oculta && !ocultas.has(d.seccion));
 
 // ---------- Hoja de ruta para personas recién diagnosticadas ----------
 // PROTOTIPO: mientras sea true, la página muestra el aviso y las etiquetas "Por validar".

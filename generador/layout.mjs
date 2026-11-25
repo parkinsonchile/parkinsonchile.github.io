@@ -17,6 +17,7 @@ export const icon = {
   mail: svg('<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>'),
   phone: svg('<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/>'),
   whatsapp: svg('<path d="M3.5 20.5 5 16a8.5 8.5 0 1 1 3 3z"/><path d="M9 8.5c.3-.4.9-.3 1.1.1l.6 1.3c.1.3 0 .6-.2.8l-.4.4c.5 1 1.3 1.8 2.3 2.3l.4-.4c.2-.2.5-.3.8-.2l1.3.6c.4.2.5.8.1 1.1l-.5.5c-.5.5-1.2.7-1.9.4a7.2 7.2 0 0 1-4.3-4.3c-.3-.7-.1-1.4.4-1.9z"/>'),
+  whatsappLogo: `<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>`,
   menu: svg('<path d="M4 7h16M4 12h16M4 17h16"/>'),
   close: svg('<path d="M6 6l12 12M18 6 6 18"/>'),
   heart: svg('<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/><path d="M8.5 11h2l1-2 1.5 4 1-2h1.5"/>'),
@@ -43,11 +44,7 @@ function header(active, prefix) {
     <p class="utility__note" style="margin:0">${icon.info}<span>Guía educativa<span class="long">: no reemplaza la consulta médica</span></span></p>
     <div class="utility__tools">
       <a class="utility__cta" href="${prefix}hoja-de-ruta.html"${active === "hoja-de-ruta" ? ' aria-current="page"' : ""}>¿Recién diagnosticado? <span class="long">Tu hoja de ruta</span></a>
-      <div class="textsize" role="group" aria-label="Tamaño de letra"><span>Letra</span>
-        <button type="button" data-textsize="" aria-pressed="true" aria-label="Tamaño normal">A</button>
-        <button type="button" data-textsize="text-lg" aria-pressed="false" aria-label="Letra más grande">A</button>
-        <button type="button" data-textsize="text-xl" aria-pressed="false" aria-label="Letra muy grande">A</button>
-      </div>
+      <a class="utility__wa" href="${contacto.whatsapp}" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">${icon.whatsappLogo}<span class="long">WhatsApp</span></a>
       <a href="mailto:${contacto.email}">${contacto.email}</a>
     </div>
   </div>
@@ -99,7 +96,10 @@ function footer(prefix) {
     </div>
   </div>
 </footer>
-<a class="back-top" href="#contenido" aria-label="Volver arriba">${icon.arrowUp}</a>`;
+<div class="floaters">
+  <a class="back-top" href="#contenido" aria-label="Volver al inicio de la página">${icon.arrowUp}</a>
+  <a class="wa-float" href="${contacto.whatsapp}" target="_blank" rel="noopener" aria-label="Conversar por WhatsApp">${icon.whatsappLogo}</a>
+</div>`;
 }
 
 // ---------- Documento completo ----------
@@ -122,7 +122,6 @@ export function page({ title, description, active, body, prefix = "" }) {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${prefix}css/site.css">
-<script>try{var t=localStorage.getItem("pc-textsize");if(t)document.documentElement.classList.add(t)}catch(e){}</script>
 </head>
 <body>
 ${header(active, prefix)}

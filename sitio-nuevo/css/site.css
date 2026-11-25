@@ -33,8 +33,6 @@
   --base: 18px;
 }
 
-html.text-lg { --base: 20px; }
-html.text-xl { --base: 22px; }
 
 *, *::before, *::after { box-sizing: border-box; }
 html { font-size: var(--base); scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 20px); -webkit-text-size-adjust: 100%; }
@@ -85,12 +83,8 @@ strong { font-weight: 700; }
 .utility__note { display: flex; align-items: center; gap: 8px; }
 .utility__note svg { width: 16px; height: 16px; color: var(--lime); flex: none; }
 .utility__tools { display: flex; align-items: center; gap: 18px; }
-.textsize { display: inline-flex; align-items: center; gap: 4px; }
-.textsize span { margin-right: 4px; }
-.textsize button { min-width: 34px; height: 30px; border-radius: 8px; border: 1px solid rgba(255,255,255,.35); background: transparent; color: #fff; font: inherit; font-weight: 700; cursor: pointer; }
-.textsize button[aria-pressed="true"] { background: var(--lime); color: var(--deep); border-color: var(--lime); }
-.textsize button:nth-of-type(2) { font-size: .95rem; }
-.textsize button:nth-of-type(3) { font-size: 1.08rem; }
+.utility__wa { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; }
+.utility__wa svg { width: 17px; height: 17px; color: #4ade80; flex: none; }
 
 /* ---------- Encabezado ---------- */
 .site-header { position: sticky; top: 0; z-index: 50; background: rgba(251,250,246,.94); backdrop-filter: saturate(1.4) blur(14px); border-bottom: 1px solid var(--line); }
@@ -123,7 +117,6 @@ strong { font-weight: 700; }
   .utility__note span.long { display: none; }
   .utility__tools > a:not(.utility__cta) { display: none; }
   .utility__cta .long { display: none; }
-  .textsize span { display: none; }
   .brand__text small { display: none; }
   .brand__mark { width: 44px; height: 44px; }
   .brand__mark img { width: 32px; height: 32px; }
@@ -472,10 +465,17 @@ a.contact-card:hover { border-color: var(--forest); box-shadow: var(--shadow); c
 @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .footer-grid { grid-template-columns: 1fr; } }
 
-.back-top { position: fixed; right: 18px; bottom: 18px; z-index: 40; width: 52px; height: 52px; border-radius: 50%; background: var(--forest); color: #fff; display: grid; place-items: center; box-shadow: var(--shadow-hover); opacity: 0; visibility: hidden; transition: opacity .2s, visibility .2s; text-decoration: none; }
+.back-top { width: 52px; height: 52px; border-radius: 50%; background: var(--forest); color: #fff; display: grid; place-items: center; box-shadow: var(--shadow-hover); opacity: 0; visibility: hidden; transition: opacity .2s, visibility .2s; text-decoration: none; }
 .back-top.is-visible { opacity: 1; visibility: visible; }
 .back-top:hover { background: var(--deep); color: #fff; }
 .back-top svg { width: 24px; height: 24px; }
+
+/* Botones flotantes: volver arriba (aparece al bajar) y WhatsApp (siempre visible) */
+.floaters { position: fixed; right: 18px; bottom: 18px; z-index: 40; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.wa-float { width: 58px; height: 58px; border-radius: 50%; background: #25d366; color: #fff; display: grid; place-items: center; box-shadow: 0 6px 18px rgba(0,0,0,.22); transition: transform .15s, background .15s; }
+.wa-float:hover { background: #1ebe5b; color: #fff; transform: scale(1.06); }
+.wa-float svg { width: 32px; height: 32px; }
+@media (max-width: 640px) { .floaters { right: 14px; bottom: 14px; } .wa-float { width: 54px; height: 54px; } }
 
 /* ---------- Hoja de ruta ---------- */
 .utility__cta { background: var(--lime); color: var(--deep) !important; font-weight: 700; padding: 4px 12px; border-radius: 999px; white-space: nowrap; }
@@ -564,7 +564,7 @@ a.contact-card:hover { border-color: var(--forest); box-shadow: var(--shadow); c
 }
 
 @media print {
-  .utility, .site-header, .toc, .toc-mobile, .pager, .back-top, .site-footer, .btn-row { display: none !important; }
+  .utility, .site-header, .toc, .toc-mobile, .pager, .floaters, .site-footer, .btn-row { display: none !important; }
   body { background: #fff; font-size: 12pt; }
   .with-toc { display: block; }
   .tabs__panel[hidden] { display: block; }

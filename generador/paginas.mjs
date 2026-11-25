@@ -63,7 +63,7 @@ function inicio() {
 
 <section class="section section--mint" id="temas">
   <div class="container">
-    <div class="section-head"><div><span class="eyebrow">La guía completa</span><h2>Seis secciones, un recorrido</h2><p>Cada sección tiene su propia página, con un índice para ir directo al tema que buscas.</p></div></div>
+    <div class="section-head"><div><span class="eyebrow">La guía completa</span><h2>${["Cero","Una","Dos","Tres","Cuatro","Cinco","Seis","Siete"][C.secciones.length]} secciones, un recorrido</h2><p>Cada sección tiene su propia página, con un índice para ir directo al tema que buscas.</p></div></div>
     <div class="topics">${topics}</div>
   </div>
 </section>

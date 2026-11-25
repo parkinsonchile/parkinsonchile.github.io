@@ -19,26 +19,6 @@
     window.gtag("config", "G-S5HH39X5H3");
   }
 
-  /* ---- Tamaño de letra ---- */
-  var sizes = ["", "text-lg", "text-xl"];
-  function applySize(cls) {
-    sizes.forEach(function (c) { if (c) document.documentElement.classList.remove(c); });
-    if (cls) document.documentElement.classList.add(cls);
-    document.querySelectorAll("[data-textsize]").forEach(function (b) {
-      b.setAttribute("aria-pressed", String(b.getAttribute("data-textsize") === cls));
-    });
-  }
-  var saved = "";
-  try { saved = localStorage.getItem("pc-textsize") || ""; } catch (e) {}
-  applySize(sizes.indexOf(saved) > -1 ? saved : "");
-  document.querySelectorAll("[data-textsize]").forEach(function (b) {
-    b.addEventListener("click", function () {
-      var cls = b.getAttribute("data-textsize");
-      applySize(cls);
-      try { localStorage.setItem("pc-textsize", cls); } catch (e) {}
-    });
-  });
-
   /* ---- Menú móvil ---- */
   var toggle = document.querySelector(".menu-toggle");
   var nav = document.getElementById("menu-principal");
@@ -206,7 +186,7 @@
   var top = document.querySelector(".back-top");
   if (top) {
     window.addEventListener("scroll", function () {
-      top.classList.toggle("is-visible", window.scrollY > 900);
+      top.classList.toggle("is-visible", window.scrollY > 400);
     }, { passive: true });
   }
 })();

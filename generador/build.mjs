@@ -9,6 +9,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { tmpdir } from "node:os";
 import { paginas } from "./paginas.mjs";
 import { pdfs } from "./pdfs.mjs";
+import { ocultas } from "./contenido.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const site = join(here, "..", "sitio-nuevo");
@@ -18,6 +19,7 @@ mkdirSync(pdfSrc, { recursive: true });
 mkdirSync(pdfOut, { recursive: true });
 
 for (const [file, fn] of Object.entries(paginas)) {
+  if (ocultas.has(file.replace(/.html$/, ""))) { if (existsSync(join(site, file))) rmSync(join(site, file)); console.log("oculta  ", file); continue; }
   writeFileSync(join(site, file), fn(), "utf8");
   console.log("página  ", file);
 }
@@ -32,7 +34,9 @@ const browser = browsers.find((b) => existsSync(b));
 if (!browser) { console.error("No se encontró Edge ni Chrome para generar los PDF."); process.exit(1); }
 const profile = join(tmpdir(), "pc-pdf-profile");
 
+for (const [id] of Object.entries(pdfs)) if (ocultas.has(id) && existsSync(join(pdfOut, `${id}.pdf`))) rmSync(join(pdfOut, `${id}.pdf`));
 for (const [id, fn] of Object.entries(pdfs)) {
+  if (ocultas.has(id)) { console.log("oculto  ", id + ".pdf"); continue; }
   const src = join(pdfSrc, `${id}.html`);
   const out = join(pdfOut, `${id}.pdf`);
   writeFileSync(src, fn(), "utf8");

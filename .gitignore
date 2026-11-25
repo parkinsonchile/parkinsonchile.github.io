@@ -1,0 +1,10 @@
+# Solo se versiona la página y su generador.
+# Los documentos de traspaso, el código antiguo de ChatGPT y los zip quedan fuera.
+/*
+!/.gitignore
+!/.github/
+!/sitio-nuevo/
+!/generador/
+!/LEEME_sitio_nuevo.md
+/generador/_pdf/
+node_modules/

@@ -447,7 +447,6 @@ function hojaDeRuta() {
 
   const later = C.masAdelante.map((m) => `<article class="card"${tagAttr(m.tags)}><h3>${esc(m.title)} ${pendingTag(m.pending)}</h3><p>${esc(m.text)}</p>${m.link ? `<a class="steplink" href="${m.link[1]}">${esc(m.link[0])}${icon.arrow}</a>` : ""}</article>`).join("");
 
-  const testimonios = C.testimonios.map((t) => `<figure class="testimonio"><blockquote>${C.PROTOTIPO ? `<span class="muted">Espacio para su respuesta a: “${esc(t.q)}”</span>` : ""}</blockquote><figcaption><strong>${esc(t.who)}</strong><span>${esc(t.role)}</span></figcaption></figure>`).join("");
 
   const nav = C.hojaDeRuta.map((s, i) => `<li><a href="#${s.id}"><span>${pad(i + 1)}</span>${esc(s.when)}</a></li>`).join("")
     + `<li><a href="#mas-adelante"><span>${pad(C.hojaDeRuta.length + 1)}</span>Más adelante</a></li>`;
@@ -496,12 +495,6 @@ function hojaDeRuta() {
         </div>
       </section>
 
-      <section class="block-plain" id="testimonios" aria-labelledby="testimonios-t">
-        <span class="stage__when">Desde la experiencia ${pendingTag(true)}</span>
-        <h2 id="testimonios-t">Lo que nos hubiera gustado saber</h2>
-        <p class="muted">Consejos de personas que ya recorrieron este camino.</p>
-        <div class="testimonios">${testimonios}</div>
-      </section>
 
       <section class="block-plain">
         <div class="downloads">${downloadCard("hoja-de-ruta", true)}${downloadCard("preparar-la-consulta")}${downloadCard("ges-62")}</div>

@@ -116,11 +116,6 @@ export const alertas = [
   { text: "Un síntoma que aparece de forma súbita o cambia bruscamente requiere evaluación médica oportuna: no asumas que es el Parkinson." },
   { text: "Caídas, confusión, alucinaciones, desmayos o dificultad para tragar merecen consulta pronta.", pending: true },
 ];
-export const testimonios = [
-  { who: "Diego Figueroa", role: "Presidente", q: "¿Qué te hubiera gustado saber la primera semana?" },
-  { who: "Andrés Vielva", role: "Vicepresidente", q: "¿Qué problema con Isapre, Fonasa o el seguro nadie te advirtió?" },
-  { who: "Comunidad Parkinson Chile", role: "Pacientes y familias", q: "¿Qué consejo le darías a alguien que acaba de recibir el diagnóstico?" },
-];
 
 // ---------- Qué es el Parkinson (antes era una imagen) ----------
 export const cerebro = [
